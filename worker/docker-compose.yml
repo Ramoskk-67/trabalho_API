@@ -1,0 +1,6 @@
+services:
+  meu_worker:
+    build: ./meu_worker
+    environment:
+      - API_BASE_URL=http://host.docker.internal:8080
+    restart: always
