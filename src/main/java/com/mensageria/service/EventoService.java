@@ -35,7 +35,9 @@ public class EventoService {
      */
     @Transactional(readOnly = true)
     public List<EventoResponse> listarPendentes() {
-        return repository.findByStatusOrderByCriadoEmAsc(Evento.StatusEvento.PENDENTE).map(EventoResponse::from)
+        return repository.findByStatusOrderByCriadoEmAsc(Evento.StatusEvento.PENDENTE)
+                .stream()
+                .map(EventoResponse::from)
                 .toList();
     }
 
