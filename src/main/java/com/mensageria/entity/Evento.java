@@ -50,7 +50,7 @@ public class Evento {
     public Instant getCriadoEm() { return criadoEm; }
     public void setCriadoEm(Instant criadoEm) { this.criadoEm = criadoEm; }
     public Instant getProcessadoEm() { return processadoEm; }
-    public void setProcessadoEm(Instant processadoEm) { this.processadoEm = processadoE
+    public void setProcessadoEm(Instant processadoEm) { this.processadoEm = processadoEm; }
     /**
      * Estados possíveis do processamento.
      * Pode ficar aqui dentro da entity ou em arquivo próprio — questão de organização.
