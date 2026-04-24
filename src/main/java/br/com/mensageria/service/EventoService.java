@@ -1,14 +1,16 @@
-package com.mensageria.service;
+package br.com.mensageria.service;
 
-import com.mensageria.dto.AtualizaResultadoRequest;
-import com.mensageria.dto.EventoResponse;
-import com.mensageria.dto.NovoEventoRequest;
-import com.mensageria.entity.Evento;
-import com.mensageria.exception.EventoNotFoundException;
-import com.mensageria.repository.EventoRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import br.com.mensageria.dto.AtualizaResultadoRequest;
+import br.com.mensageria.dto.EventoResponse;
+import br.com.mensageria.dto.NovoEventoRequest;
+import br.com.mensageria.entity.Evento;
+import br.com.mensageria.exception.EventoNotFoundException;
+import br.com.mensageria.repository.EventoRepository;
+
 import java.time.Instant;
 import java.util.List;
 

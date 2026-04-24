@@ -1,5 +1,5 @@
-package com.mensageria.dto;
-import com.mensageria.entity.Evento;
+package br.com.mensageria.dto;
+import br.com.mensageria.entity.Evento;
 import jakarta.validation.constraints.NotNull;
 /**
 * PATCH típico: só os campos que o cliente pode mudar nesta operação.

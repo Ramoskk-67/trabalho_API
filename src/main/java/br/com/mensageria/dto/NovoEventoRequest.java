@@ -1,4 +1,4 @@
-package com.mensageria.dto;
+package br.com.mensageria.dto;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package com.mensageria.exception;
+package br.com.mensageria.exception;
 
 public class EventoNotFoundException extends RuntimeException {
     public EventoNotFoundException(Long id) {

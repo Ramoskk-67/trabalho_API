@@ -1,7 +1,9 @@
-package com.mensageria.dto;
+package br.com.mensageria.dto;
 
-import com.mensageria.entity.Evento;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import br.com.mensageria.entity.Evento;
+
 import java.time.Instant;
 
 /**

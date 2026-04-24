@@ -1,9 +1,11 @@
-package com.mensageria.repository;
-import com.mensageria.entity.Evento;
+package br.com.mensageria.repository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import br.com.mensageria.entity.Evento;
+
 import java.util.List;
 /**
 * JpaRepository<Entity, TipoDaChavePrimaria> já traz save, findById, findAll, delete..
