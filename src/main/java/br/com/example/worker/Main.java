@@ -1,4 +1,4 @@
-package worker;
+package br.com.example.worker;
 
 import java.net.URI;
 import java.net.http.HttpClient;
