@@ -1,6 +1,29 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres_mensageria
+    environment:
+      POSTGRES_DB: ${DB_NAME:-mensageria_db}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    networks:
+      - mensageria_network
+
   meu_worker:
-    build: ./meu_worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: worker_mensageria
     environment:
       - API_BASE_URL=http://host.docker.internal:8080
-    restart: always
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - mensageria_network
+
+networks:
+  mensageria_network:
+    driver: bridge

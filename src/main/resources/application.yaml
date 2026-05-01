@@ -1,11 +1,21 @@
 spring:
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mensageria_db}
-  username: ${DB_USER:postgres}
-  password: ${DB_PASSWORD:postgres}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
   jpa:
-  hibernate:
-  ddl-auto: update # desenvolvimento: cria/atualiza tabelas; em produção prefira
-  open-in-view: false # evita queries lazy acidentais no meio da serialização JSON
-  server:
-    port: 8080
+    hibernate:
+      ddl-auto: update # desenvolvimento: cria/atualiza tabelas; em produção prefira "validate"
+    open-in-view: false # evita queries lazy acidentais no meio da serialização JSON
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        # Garante que JSON/JSONB sejam tratados corretamente
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+
+server:
+  port: 8080
