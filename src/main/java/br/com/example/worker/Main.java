@@ -88,9 +88,15 @@ public class Main {
             String usuarioId = extrairValor(payload, "usuario_id");
             String produtoId = extrairValor(payload, "produto_id");
             String acao = extrairValor(payload, "acao");
-            
+
             System.out.println("   Usuário ID: " + usuarioId);
             System.out.println("   Produto ID: " + produtoId);
+            if (acao == null || acao.equals("desconhecido")) {
+                System.err.println("⚠️  Campo 'acao' não encontrado no payload! Valor recebido: '" + acao + "'");
+                // Aqui você pode decidir se quer abortar, lançar exceção ou seguir com valor padrão
+            } else {
+                System.out.println("   Ação: " + acao);
+            }
             
             // ✅ 2. PROCESSAR COM SIMULAÇÃO DE ERRO
             boolean sucesso = processarEventoComSimulacao(usuarioId, produtoId);
