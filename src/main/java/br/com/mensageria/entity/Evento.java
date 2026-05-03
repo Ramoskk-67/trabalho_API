@@ -38,6 +38,16 @@ public class Evento {
     public Evento(JsonNode payload) {
         this.payload = payload;
     }
+
+    // Novo construtor para aceitar String JSON
+    public Evento(String payloadJson) {
+        try {
+            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            this.payload = mapper.readTree(payloadJson);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao converter String para JsonNode", e);
+        }
+    }
     // --- getters e setters (JPA precisa acessar os campos) --
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
