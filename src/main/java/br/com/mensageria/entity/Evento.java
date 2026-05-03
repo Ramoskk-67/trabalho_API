@@ -1,9 +1,11 @@
 package br.com.mensageria.entity;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import java.time.Instant;
+import java.util.Map;
 /**
  * Representa a tabela "eventos".
  * Cada linha = um evento na fila (mensageria simulada).
@@ -39,10 +41,19 @@ public class Evento {
         this.payload = payload;
     }
 
+    public Evento(Map<String, Object> payload) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            this.payload = mapper.valueToTree(payload);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao converter Map para JsonNode", e);
+        }
+    }
+
     // Novo construtor para aceitar String JSON
     public Evento(String payloadJson) {
         try {
-            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper();
             this.payload = mapper.readTree(payloadJson);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao converter String para JsonNode", e);
