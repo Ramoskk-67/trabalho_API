@@ -20,14 +20,15 @@ public class Main {
     private static final Random random = new Random();
     
     public static void main(String[] args) {
+        String baseUrl = System.getenv("API_BASE_URL") != null
+            ? System.getenv("API_BASE_URL")
+            : "http://localhost:8080";
+        
+        String queueName = System.getenv("QUEUE_NAME") != null
+            ? System.getenv("QUEUE_NAME")
+            : "notificacao";
+        
         try {
-            String baseUrl = System.getenv("API_BASE_URL") != null
-                ? System.getenv("API_BASE_URL")
-                : "http://host.docker.internal:8080";
-            
-            String queueName = System.getenv("QUEUE_NAME") != null
-                ? System.getenv("QUEUE_NAME")
-                : "notificacao";
             
             System.out.println("=== Worker de Notificação (com simulação de erro) ===");
             System.out.println("API: " + baseUrl);
@@ -139,7 +140,7 @@ public class Main {
             System.err.println("❌ Execução interrompida: " + e.getMessage());
         } catch (java.net.ConnectException e) {
             System.err.println("❌ ERRO DE CONEXÃO: Não foi possível conectar à API!");
-            System.err.println("   Verifique se a API está rodando em: " + System.getenv("API_BASE_URL"));
+            System.err.println("   Verifique se a API está rodando em: " + baseUrl);
         } catch (java.net.SocketTimeoutException e) {
             System.err.println("❌ TIMEOUT: A API demorou muito para responder!");
         } catch (Exception e) {
