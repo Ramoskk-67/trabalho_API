@@ -39,7 +39,7 @@ public class Main {
         while (true) {
             try {
                 executarCiclo(baseUrl);
-                Thread.sleep(3000); // espera 3s
+                Thread.sleep(10000); // espera 10s
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("❌ Execução interrompida: " + e.getMessage());
