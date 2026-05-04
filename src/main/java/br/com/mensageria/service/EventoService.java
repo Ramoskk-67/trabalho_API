@@ -14,7 +14,7 @@ import br.com.mensageria.repository.EventoRepository;
 import java.time.Instant;
 import java.util.List;
 
-@Service // Registra como bean: pode ser injetado no Controller
+@Service 
 public class EventoService {
     private final EventoRepository repository;
 
