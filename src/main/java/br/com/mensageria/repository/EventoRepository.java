@@ -7,10 +7,8 @@ import org.springframework.data.repository.query.Param;
 import br.com.mensageria.entity.Evento;
 
 import java.util.List;
-/**
-* JpaRepository<Entity, TipoDaChavePrimaria> já traz save, findById, findAll, delete..
-* Você declara apenas o que for específico do domínio.
-*/
+
+
 public interface EventoRepository extends JpaRepository<Evento, Long> {
 /**
 * JPQL: consulta orientada a objetos (nomes de classe/campo, não tabela SQL).

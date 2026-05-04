@@ -6,10 +6,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import java.time.Instant;
 import java.util.Map;
-/**
- * Representa a tabela "eventos".
- * Cada linha = um evento na fila (mensageria simulada).
- */
+
 @Entity
 @Table(name = "eventos")
 public class Evento {
@@ -35,7 +32,7 @@ public class Evento {
     @Column(name = "processado_em")
     private Instant processadoEm;
     public Evento() {
-        // Construtor vazio exigido pelo JPA para instanciar a entidade via reflexão
+       
     }
     public Evento(JsonNode payload) {
         this.payload = payload;
@@ -72,10 +69,8 @@ public class Evento {
     public void setCriadoEm(Instant criadoEm) { this.criadoEm = criadoEm; }
     public Instant getProcessadoEm() { return processadoEm; }
     public void setProcessadoEm(Instant processadoEm) { this.processadoEm = processadoEm; }
-    /**
-     * Estados possíveis do processamento.
-     * Pode ficar aqui dentro da entity ou em arquivo próprio — questão de organização.
-     */
+    
+    
     public enum StatusEvento {
         PENDENTE,
         PROCESSANDO,
