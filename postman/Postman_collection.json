@@ -1,0 +1,181 @@
+{
+  "info": {
+    "_postman_id": "60ff2acd-2fa2-4ce7-a6cf-d5520b6319b2",
+    "name": "Plataforma de confirmação e agradecimento",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53796028",
+    "_collection_link": "https://go.postman.co/collection/53796028-60ff2acd-2fa2-4ce7-a6cf-d5520b6319b2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Confirmação",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"payload\": {\r\n        \"tipo\": \"sms_confirmacao\",\r\n        \"usuarioId\": \"masd\",\r\n        \"produtoId\": \"gas_002\",\r\n        \"telefone\": \"27988312676\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/eventos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "eventos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pendentes",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/eventos/pendentes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "eventos",
+            "pendentes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Agradecimento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"payload\": {\r\n    \"tipo\": \"sms_agradecimento\",\r\n    \"usuarioId\": \"Luiz-c\",\r\n    \"produtoId\": \"gas_002\",\r\n    \"telefone\": \"27988312676\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/eventos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "eventos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Evento Primeiro",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"payload\": {\r\n    \"tipo\": \"sms_agradecimento\",\r\n    \"usuarioId\": \"Luiz-curso\",\r\n    \"produtoId\": \"gas_002\",\r\n    \"telefone\": \"27988312676\"\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/eventos/primeiro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "eventos",
+            "primeiro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Resultado",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"status\": \"PROCESSANDO\",\r\n  \"resultado\": \"Notificação enviada com sucesso\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/eventos/103/resultado",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "eventos",
+            "103",
+            "resultado"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
