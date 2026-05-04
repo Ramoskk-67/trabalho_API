@@ -14,7 +14,7 @@ public class Main {
     
     private static final String STATUS_CONCLUIDO = "CONCLUIDO";
     
-    // 🔧 Configuração para SIMULAR erros
+    //  Configuração para SIMULAR erros
     private static final boolean SIMULAR_ERROS = true;
     private static final double TAXA_ERRO = 0.5;
     private static final Random random = new Random();
@@ -84,7 +84,11 @@ public class Main {
             status = STATUS_CONCLUIDO;
             resultado = "OK";
         } else {
+<<<<<<< HEAD
             // 🔁 VOLTA PRA FILA (retry automático)
+=======
+            
+>>>>>>> b225ee2614fc1fbdfdeef28540f967d49d04b782
             status = "PENDENTE";
             resultado = "Erro - será reprocessado";
         }
@@ -107,11 +111,11 @@ public class Main {
             Thread.sleep(2000);
 
             if (SIMULAR_ERROS && random.nextDouble() < TAXA_ERRO) {
-                System.out.println("❌ Falha simulada");
+                System.out.println(" Falha simulada ");
                 return false;
             }
 
-            System.out.println("✅ Sucesso");
+            System.out.println(" Sucesso");
             return true;
 
         } catch (Exception e) {

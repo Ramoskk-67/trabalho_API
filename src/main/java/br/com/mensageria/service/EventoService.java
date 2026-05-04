@@ -14,7 +14,11 @@ import br.com.mensageria.repository.EventoRepository;
 import java.time.Instant;
 import java.util.List;
 
+<<<<<<< HEAD
 @Service
+=======
+@Service 
+>>>>>>> b225ee2614fc1fbdfdeef28540f967d49d04b782
 public class EventoService {
 
     private final EventoRepository repository;
