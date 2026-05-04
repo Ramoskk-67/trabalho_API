@@ -3,6 +3,7 @@ package br.com.mensageria.controller;
 import br.com.mensageria.dto.AtualizaResultadoRequest;
 import br.com.mensageria.dto.EventoResponse;
 import br.com.mensageria.dto.NovoEventoRequest;
+import br.com.mensageria.entity.Evento;
 import br.com.mensageria.service.EventoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -10,35 +11,45 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-/**
- * @RequestMapping prefixa todas as URLs desta classe.
- * @Valid dispara a validação dos DTOs (ex.: @NotNull).
- */
 @RestController
 @RequestMapping("/eventos")
 public class EventoController {
+
     private final EventoService eventoService;
 
     public EventoController(EventoService eventoService) {
         this.eventoService = eventoService;
     }
 
-@PostMapping
-public ResponseEntity<EventoResponse> criarEvento(@Valid @RequestBody NovoEventoRequest request) {
-    EventoResponse response = eventoService.criarEvento(request);
-    return ResponseEntity.status(HttpStatus.CREATED).body(response);
-}
+    @PostMapping
+    public ResponseEntity<EventoResponse> criarEvento(@Valid @RequestBody NovoEventoRequest request) {
+        EventoResponse response = eventoService.criarEvento(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 
     @GetMapping("/pendentes")
     public ResponseEntity<List<EventoResponse>> listarPendentes() {
         return ResponseEntity.ok(eventoService.listarPendentes());
     }
 
+    // 🔥 NOVO - LISTAR TODOS
+    @GetMapping
+    public ResponseEntity<List<EventoResponse>> listarTodos() {
+        return ResponseEntity.ok(eventoService.listarTodos());
+    }
+
+    // 🔥 NOVO - FILTRAR POR STATUS
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<EventoResponse>> listarPorStatus(@PathVariable String status) {
+        Evento.StatusEvento statusEnum = Evento.StatusEvento.valueOf(status.toUpperCase());
+        return ResponseEntity.ok(eventoService.listarPorStatus(statusEnum));
+    }
+
     @GetMapping("/primeiro")
     public ResponseEntity<EventoResponse> obterPrimeiroEvento() {
         EventoResponse response = eventoService.obterProximoEvento();
         if (response == null) {
-            return ResponseEntity.noContent().build(); // 204
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(response);
     }
@@ -49,4 +60,5 @@ public ResponseEntity<EventoResponse> criarEvento(@Valid @RequestBody NovoEvento
             @Valid @RequestBody AtualizaResultadoRequest request) {
         return ResponseEntity.ok(eventoService.atualizarResultado(id, request));
     }
+    
 }

@@ -6,6 +6,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Random;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,7 +31,7 @@ public class Main {
         while (true) {
             try {
                 executarCiclo(baseUrl);
-                Thread.sleep(5000); // ↓ diminui tempo pra processar mais rápido
+                Thread.sleep(5000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,8 +66,12 @@ public class Main {
         String usuarioId = payload.has("usuarioId") ? payload.get("usuarioId").asText() : "desconhecido";
         String produtoId = payload.has("produtoId") ? payload.get("produtoId").asText() : "desconhecido";
 
-        System.out.println("\n📦 Processando evento ID: " + id);
-        System.out.println("Usuário: " + usuarioId + " | Produto: " + produtoId);
+        // 🔥 AQUI AGORA MOSTRA O PROCESSANDO
+        System.out.println("\n🔄 Evento " + id + " está em PROCESSANDO");
+        System.out.println("📦 Usuário: " + usuarioId + " | Produto: " + produtoId);
+
+        // 🔥 Delay só pra visualização (importante pra apresentação)
+        Thread.sleep(2000);
 
         // 2. PROCESSAR
         boolean sucesso = processar();
@@ -79,7 +84,7 @@ public class Main {
             status = STATUS_CONCLUIDO;
             resultado = "OK";
         } else {
-            // 🔥 VOLTA PRA FILA (isso resolve teu problema)
+            // 🔁 VOLTA PRA FILA (retry automático)
             status = "PENDENTE";
             resultado = "Erro - será reprocessado";
         }
