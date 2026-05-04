@@ -84,11 +84,6 @@ public class Main {
             status = STATUS_CONCLUIDO;
             resultado = "OK";
         } else {
-<<<<<<< HEAD
-            // 🔁 VOLTA PRA FILA (retry automático)
-=======
-            
->>>>>>> b225ee2614fc1fbdfdeef28540f967d49d04b782
             status = "PENDENTE";
             resultado = "Erro - será reprocessado";
         }
